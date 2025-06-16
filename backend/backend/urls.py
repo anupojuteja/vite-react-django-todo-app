@@ -22,9 +22,21 @@ urlpatterns = [
 ]
 
 
+# from django.urls import path, include
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('', include('todos.urls')),  # ✅ Include app's URLs here
+# ]
+from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Welcome to the TODO app!")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('todos.urls')),  # ✅ Include app's URLs here
+    path('todos/', include('todos.urls')),
+    path('', home),  # ✅ This handles the base URL
 ]
